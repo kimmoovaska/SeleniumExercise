@@ -44,20 +44,19 @@ public class AmazonWebTest {
         Select sortDropdown = new Select(dropdown);
         sortDropdown.selectByVisibleText("Price: High to Low");
         
-        //Click "See all sorted results" -link to list all products
+        //Click "See all sorted results" -link to list all products (not only relevant products!)
         WebElement allProducts = driver.findElement(By.linkText("See all sorted results."));
         allProducts.click();
         
         // Select second product and click it for details.
-        // Selection is made by absolute xpath --> This is not a very clever solution, find better way to sort things out later.
-        String xpath1 = "/html/body/div[1]/div[2]/div/div[3]/div[2]/div/div[4]/div[1]/div/ul/li[2]/div/div/div/div[2]/div[2]/div[1]/div[1]/a";
-        driver.findElement(By.xpath(xpath1)).click();
+        WebElement productItem = driver.findElement(By.cssSelector("#result_1"));
+        WebElement detailLink = productItem.findElement(By.className("s-access-detail-page"));
+        detailLink.click();
         
         // From details check (verify with assert) that product topic contains text “Nikon D3X”
         // Find topic text from correct field
         WebElement textField = driver.findElement(By.id("centerCol"));
         String topic = textField.getText();
-//        System.out.println(topic);
         
         // Assert topic text contain expected string
         String expectedString = "Nikon D3X";
