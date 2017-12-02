@@ -15,6 +15,7 @@ import junit.framework.Assert;
 public class AmazonWebTest {
 
 	public static void main(String[] args) {
+		String targetUrl = args[0];
 		// Set path for GeckoDriver
 		System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "\\drivers\\geckodriver.exe");
 
@@ -23,7 +24,7 @@ public class AmazonWebTest {
         driver.manage().timeouts().pageLoadTimeout(100, TimeUnit.SECONDS);
         
         // Open site "https://www.amazon.com"
-        driver.get("https://www.amazon.com");
+        driver.get(targetUrl);
         
         // Find the search field element by its name
         WebElement searchField = driver.findElement(By.name("field-keywords"));
