@@ -1,2 +1,2 @@
 # SeleniumExercise
-Short exercise with Selenium
+Short exercise with Selenium WebDriver
