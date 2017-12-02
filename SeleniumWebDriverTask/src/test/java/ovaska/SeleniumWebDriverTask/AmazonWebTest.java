@@ -44,6 +44,10 @@ public class AmazonWebTest {
         Select sortDropdown = new Select(dropdown);
         sortDropdown.selectByVisibleText("Price: High to Low");
         
+        //Click "See all sorted results" -link to list all products
+        WebElement allProducts = driver.findElement(By.linkText("See all sorted results."));
+        allProducts.click();
+        
         // Select second product and click it for details.
         // Selection is made by absolute xpath --> This is not a very clever solution, find better way to sort things out later.
         String xpath1 = "/html/body/div[1]/div[2]/div/div[3]/div[2]/div/div[4]/div[1]/div/ul/li[2]/div/div/div/div[2]/div[2]/div[1]/div[1]/a";
@@ -51,26 +55,19 @@ public class AmazonWebTest {
         
         // From details check (verify with assert) that product topic contains text “Nikon D3X”
         // Find topic text from correct field
-        WebElement textField = driver.findElement(By.cssSelector("#title_feature_div"));
+        WebElement textField = driver.findElement(By.id("centerCol"));
         String topic = textField.getText();
-        System.out.println(topic);
+//        System.out.println(topic);
         
         // Assert topic text contain expected string
-        String expectedString1 = "Nikon D4S";
-        String expectedString2 = "Nikon D3X";
+        String expectedString = "Nikon D3X";
         
         // Added try-catch structure to avoid assertion error blocking browser closing.
         
         try {
-        	Assert.assertTrue(topic.contains(expectedString1));
+        	Assert.assertTrue(topic.contains(expectedString));
         } catch (Throwable e) {
-        	System.out.println(e + ": Expected string \"" + expectedString1 + "\" not found!");
-        }
-        
-        try {
-        	Assert.assertTrue(topic.contains(expectedString2));
-        } catch (Throwable e) {
-        	System.out.println(e + ": Expected string \"" + expectedString2 + "\" not found!");
+        	System.out.println(e + ": Expected string \"" + expectedString + "\" not found!");
         }
 
         //Close the browser
