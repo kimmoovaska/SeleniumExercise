@@ -18,7 +18,7 @@ import cucumber.api.java.en.When;
 import cucumber.api.java.Before;
 import cucumber.api.java.After;
 
-public class Test_Steps {
+public class TestSteps {
 	public static WebDriver driver;
 	
 @Before
